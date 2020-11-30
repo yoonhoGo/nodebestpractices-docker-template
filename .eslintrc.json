@@ -1,3 +1,8 @@
 {
-  "extends": "./node_modules/gts/"
+  "plugins": ["security", "mocha"],
+  "extends": [
+    "./node_modules/gts/",
+    "plugin:security/recommended",
+    "plugin:mocha/recommended"
+  ]
 }
