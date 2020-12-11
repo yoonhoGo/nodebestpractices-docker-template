@@ -1,4 +1,5 @@
 import * as express from 'express';
+import ErrorHanlder from './components/error-handler';
 import logger from './components/logger';
 import loader from './loaders';
 
@@ -6,6 +7,7 @@ export async function createApplication() {
   const app = express();
 
   await loader(app);
+  ErrorHanlder.use(app);
 
   return app;
 }
