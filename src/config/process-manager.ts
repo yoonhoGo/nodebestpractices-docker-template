@@ -1,5 +1,6 @@
 import {Server} from 'http';
 import {BaseError} from '../components/error';
+import ErrorHanlder from '../components/error-handler';
 import logger from '../components/logger';
 
 export class ProcessManager {
@@ -46,9 +47,9 @@ export class ProcessManager {
 
   uncaughtException() {
     process.on('uncaughtException', (error: BaseError) => {
-      logger.error('UncaughtExepcion ', error);
+      const isTrustedError = ErrorHanlder.handleError(error)
 
-      if ('isOperational' in error && error.isOperational) {
+      if (isTrustedError) {
         return;
       }
 
